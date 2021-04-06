@@ -17,9 +17,11 @@ Route::get('/', 'PagesController@home');
 //igual al anterio solo que ahora no necesitamos escribir Admon\
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
     Route::get('posts', 'PostsController@index')->name('admin.posts.index');
+    Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::get('posts/create', 'PostsController@create')->name('admin.posts.create');
+
 });
 
-Route::get('home', 'HomeController@index');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

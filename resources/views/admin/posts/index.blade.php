@@ -7,7 +7,7 @@
         <small>Listado description</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Posts</li>
       </ol>
 @endsection
@@ -34,6 +34,7 @@
 							<td>{{ $post->title }}</td>
 							<td>{{ $post->excerpt }}</td>
 							<td>
+								<a href="#" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 								<a href="#" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
 								<a href="#" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
 							</td>
@@ -45,3 +46,23 @@
             <!-- /.box-body -->
           </div>
 @endsection
+@push('stylespicker')
+    <!-- DataTables -->
+ <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+ @endpush
+ @push('scriptpicker')
+<script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#posts-table").DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    });
+  });
+</script>
+@endpush
