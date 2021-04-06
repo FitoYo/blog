@@ -10,17 +10,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>{{ config('app.name') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="adminlte/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="adminlte/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/bower_components/Ionicons/css/ionicons.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="adminlte/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+  <link rel="stylesheet" href="{{ asset('assets/css/AdminLTE.min.css') }}">
+    <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="adminlte/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/skins/skin-blue.min.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -267,21 +270,12 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      @yield('header')
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
-
       @yield('content')  {{-- <<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>> --}}
-
     </section>
     <!-- /.content -->
   </div>
@@ -379,12 +373,26 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="adminlte/js/adminlte.min.js"></script>
-
+<script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#posts-table").DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    });
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

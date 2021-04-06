@@ -16,7 +16,7 @@ Route::get('/', 'PagesController@home');
 //Route::get('admin/posts', 'Admin\PostsController@index');
 //igual al anterio solo que ahora no necesitamos escribir Admon\
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
-    Route::get('posts', 'PostsController@index');
+    Route::get('posts', 'PostsController@index')->name('admin.posts.index');
 });
 
 Route::get('home', 'HomeController@index');
