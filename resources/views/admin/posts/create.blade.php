@@ -26,7 +26,7 @@
 
 					<div class="form-group">
 						<label>Contenido</label><br>
-						<textarea rows="10" name="body" class="form-control" placeholder="Escribe..."></textarea>
+						<textarea rows="10" name="body" id="editor" class="form-control" placeholder="Escribe..."></textarea>
 					</div>
 				</div>
 		</div>
@@ -52,6 +52,14 @@
               		@endforeach
               	</select>
               </div>
+              <div class="form-group">
+              		<label>Etiquetas</label>
+              	  <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" style="width: 100%;">
+              	  		@foreach ($tags as $tag)
+              	  			<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+              	  		@endforeach
+                </select>
+              </div>
 				<div class="form-group">
 					<label>Extracto de la Publicación</label><br>
 					<textarea name="excerpt" class="form-control " placeholder="Escribe un Extracto"></textarea>
@@ -68,13 +76,19 @@
 @push('stylespicker')
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
  @endpush
  @push('scriptpicker')
 <!-- bootstrap datepicker -->
 <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script>
 	$('#datepicker').datepicker({
       autoclose: true
-    })
+    });
+    CKEDITOR.replace('editor');
+    $('.select2').select2();
 </script>
 @endpush
+
