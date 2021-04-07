@@ -25,6 +25,16 @@ class PostsController extends Controller
 	}
 	public function store(Request $request)
 	{
+		//validate es un atributo heredaro del Controller
+		// 1 parametro es el Request (todos los tatos) 2 Array con las reglas de Validacion RULES, 3 un mensage para mostrar
+		$this->validate($request, [
+			'title' => 'required',
+			'body' => 'required',
+			'published_at' => 'required',
+			'category' => 'required',
+			'excerpt' => 'required',
+			'tags' => 'required',
+		]);
 		//return $request->all();
 		//dd($request->get('tags'));
 		$post = new Post;
