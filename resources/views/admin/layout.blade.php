@@ -273,6 +273,9 @@ desired effect
       @yield('header')
     </section>
 
+    @if(session()->has('flash'))
+      <div class="alert alert-success">{{ session('flash') }}</div>
+    @endif
     <!-- Main content -->
     <section class="content container-fluid">
       @yield('content')  {{-- <<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>> --}}
