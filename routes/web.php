@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
+Route::get('blog/{id}', 'PostsController@show');
+
 
 //Route::get('admin/posts', 'Admin\PostsController@index');
-//igual al anterio solo que ahora no necesitamos escribir Admon\
+//igual al anterio solo que ahora no necesitamos escribir Admin\
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
     Route::get('posts', 'PostsController@index')->name('admin.posts.index');
     Route::get('/', 'AdminController@index')->name('dashboard');
