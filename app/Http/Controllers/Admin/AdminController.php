@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function __construct()
+  /*  public function __construct()
     {
     	$this->middleware('auth');
-    }
+    }*/  //lo estamos auth en la ruta web
     public function index()
     {
     	return view('admin.dashboard');

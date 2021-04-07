@@ -20,8 +20,8 @@
             <nav class="custom-wrapper" id="menu">
                 <div class="pure-menu"></div>
                 <ul class="container-flex list-unstyled">
-                    <li><a href="/" class="text-uppercase">Home</a></li>
-                    <li><a href="#" class="text-uppercase">Login</a></li>
+                    <li><a href="{{ route('home') }}" class="text-uppercase">Home</a></li>
+                    <li><a href="{{ route('login') }}" class="text-uppercase">Login</a></li>
                     <li><a href="#" class="text-uppercase">Register</a></li>
                     <li><a href="#" class="text-uppercase">Contact#</a></li>
                 </ul>

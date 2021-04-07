@@ -7,9 +7,11 @@ use App\Post;
 
 class PostsController extends Controller
 {
-    public function show($id){
-    	$post = Post::findOrFail($id);
+    public function show(Post $post){
+    	//$post = Post::findOrFail($id);
 
     	return view('posts.show', compact('post'));
     }
 }
+// finsion que cambia los espacios en blanco por otro caracter
+// str_slug($post-title, '/');
