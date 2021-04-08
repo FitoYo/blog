@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('blog/{post}', 'PostsController@show')->name('posts.show');
 
@@ -22,8 +11,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('posts', 'PostsController@index')->name('admin.posts.index');
     Route::get('posts/create', 'PostsController@create')->name('admin.posts.create');
     Route::post('posts', 'PostsController@store')->name('admin.posts.store');
-
-
+    Route::get('posts/{post}', 'PostsController@edit')->name('admin.posts.edit');
 });
 
 
@@ -33,8 +21,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');

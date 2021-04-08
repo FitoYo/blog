@@ -25,29 +25,39 @@ class PostsController extends Controller
 	}
 	public function store(Request $request)
 	{
+		$this->validate($request, ['title', => 'required']);
+
+		$post = Post::create(['title' => $request->get('title')]);
+
+		return redirect()->route('admin.posts.edit', $post);
+	}
+	public function edit(Post $post){
+		return view('admin.posts.edit', compact('post'));
+	}
 		//validate es un atributo heredaro del Controller
 		// 1 parametro es el Request (todos los tatos) 2 Array con las reglas de Validacion RULES, 3 un mensage para mostrar
-		$this->validate($request, [
-			'title' => 'required',
-			'body' => 'required',
-			'published_at' => 'required',
-			'category' => 'required',
-			'excerpt' => 'required',
-			'tags' => 'required',
-		]);
-		//return $request->all();
-		//dd($request->get('tags'));
-		$post = new Post;
-		$post->title = $request->title;
-		$post->body = $request->body;
-		$post->published_at = Carbon::parse($request->published_at);
-		$post->category_id = $request->category;
-		$post->excerpt = $request->excerpt;
-		$post->save();
+// 		 $this->validate($request, [
+// 			'title' => 'required',
+// 			'body' => 'required',
+// 			'published_at' => 'required',
+// 			'category' => 'required',
+// 			'excerpt' => 'required',
+// 			'tags' => 'required',
+// 		]);
+// 		//return $request->all();
+// 		//dd($request->get('tags'));
+// 		$post = new Post;
+// 		$post->title = $request->title;
+//		$post->url = str_slug($request->title);
+// 		$post->body = $request->body;
+// 		$post->published_at = Carbon::parse($request->published_at);
+// 		$post->category_id = $request->category;
+// 		$post->excerpt = $request->excerpt;
+// 		$post->save();
 
-	    $post->tags()->attach($request->get('tags'));
+// 	    $post->tags()->attach($request->get('tags'));
 
-	    return back()->with('flash', 'Tu publicación ha sido creada');
-	}
+// 	    return back()->with('flash', 'Tu publicación ha sido creada');
+// 	}
 
-}
+// }

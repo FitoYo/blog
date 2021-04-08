@@ -10,7 +10,7 @@
                         <span class="c-gray-1">{{ $post->published_at->diffForhumans() }}</span>
                     </div>
                     <div class="post-category">
-                        <span class="category text-capitalize">{{ $post->category->name }}</span>
+                        <span class="category text-capitalize">{{-- $post->category->name --}}</span>
                     </div>
                 </header>
                 <h1>{{ $post->title }}</h1>
@@ -18,7 +18,7 @@
                 <p>{{ $post->excerpt }}</p>
                 <footer class="container-flex space-between">
                     <div class="read-more">
-                        <a href="blog/{{ $post->id }}" class="text-uppercase c-green">read more</a>
+                        <a href="blog/{{ $post->url }}" class="text-uppercase c-green">read more</a>
                     </div>
                     <div class="tags container-flex">
                         @foreach ($post->tags as $tag)
