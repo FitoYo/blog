@@ -70,6 +70,9 @@
 					<textarea name="excerpt" class="form-control " placeholder="Escribe un Extracto">{{ old('excerpt', $post->excerpt) }}</textarea>
 					{!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
 				</div>
+        <div class="form-group">
+          <div class="dropzone"></div>
+        </div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-block">Guardar Publicacion</button>
 				</div>
@@ -80,11 +83,13 @@
 </div>
 @endsection
 @push('stylespicker')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
  @endpush
  @push('scriptpicker')
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/ckeditor/ckeditor.js') }}"></script>
@@ -95,6 +100,13 @@
     });
     CKEDITOR.replace('editor');
     $('.select2').select2();
+
+    new Dropzone('.dropzone', {
+      url: "/admin/posts/{{ $post->id }}/photos",
+      headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+      dictDefaultMessage: 'Arrastra las Fotos'
+    });
+    Dropzone.autoDiscover = false;
 </script>
 @endpush
 
