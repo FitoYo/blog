@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use App\Post;
 use App\Category;
 use App\Tag;
-use App\Post_Tag;
 use Carbon\Carbon;
 
 class PostsTableSeeder extends Seeder
@@ -12,10 +11,10 @@ class PostsTableSeeder extends Seeder
 
     public function run()
     {
-    	// Post::truncate();
-    	// Category::truncate();
-     //    Tag::truncate();
-     //    Post_Tag::truncate();
+    	Post::truncate();
+        Category::truncate();
+        Tag::truncate();
+
 
     	$category = new Category;
     	$category->name = "Categoria A";
@@ -34,6 +33,8 @@ class PostsTableSeeder extends Seeder
     	$post->category_id = 1;
     	$post->save();
 
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 11']));
+
     	$post = new Post;
     	$post->title = "segundo post";
         $post->url = "segundo-post";
@@ -42,6 +43,8 @@ class PostsTableSeeder extends Seeder
     	$post->published_at = Carbon::now()->subDays(19);
     	$post->category_id = 2;
     	$post->save();
+
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 22']));
 
     	$post = new Post;
     	$post->title = "tercer post";
@@ -52,6 +55,8 @@ class PostsTableSeeder extends Seeder
     	$post->category_id = 1;
     	$post->save();
 
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 33']));
+
     	$post = new Post;
     	$post->title = "Cuarto post";
         $post->url = "cuarto-post";
@@ -61,56 +66,6 @@ class PostsTableSeeder extends Seeder
     	$post->category_id = 2;
     	$post->save();
 
-        $tag = new Tag;
-        $tag->name = "Etiqueta 11";
-        $tag->save();
-
-        $tag = new Tag;
-        $tag->name = "Etiqueta 22";
-        $tag->save();
-
-        $tag = new Tag;
-        $tag->name = "Etiqueta 33";
-        $tag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "1";
-        $postTag->tag_id = "1";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "1";
-        $postTag->tag_id = "2";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "1";
-        $postTag->tag_id = "3";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "2";
-        $postTag->tag_id = "2";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "3";
-        $postTag->tag_id = "3";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "3";
-        $postTag->tag_id = "2";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "4";
-        $postTag->tag_id = "1";
-        $postTag->save();
-
-        $postTag = new Post_Tag;
-        $postTag->post_id = "4";
-        $postTag->tag_id = "3";
-        $postTag->save();
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 44']));
     }
 }

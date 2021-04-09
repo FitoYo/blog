@@ -13,6 +13,6 @@
     </a>
     <ul class="treeview-menu">
       <li {{ request()->is('admin/posts') ? "class=active" : '' }}><a href="{{ route('admin.posts.index') }}" class="fa fa-eye">See All Posts</a></li>
-      <li {{ request()->is('admin/posts/create') ? "class=active" : '' }}><a href="{{ route('admin.posts.create') }}" class="fa fa-pencil">Create Post</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#myModal" class="fa fa-pencil">Create Post</a></li>
     </ul>
   </li>
