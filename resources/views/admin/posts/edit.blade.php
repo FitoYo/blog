@@ -58,7 +58,7 @@
               </div>
               <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
               		<label>Etiquetas</label>
-              	  <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Select Tags" style="width: 100%;">
+              	  <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Seleciona una Tags" style="width: 100%">
               	  		@foreach ($tags as $tag)
               	  			<option {{ collect(old('tags', $post->tags->pluck('id')))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->name }}</option>
               	  		@endforeach
@@ -70,6 +70,9 @@
 					<textarea name="excerpt" class="form-control " placeholder="Escribe un Extracto">{{ old('excerpt', $post->excerpt) }}</textarea>
 					{!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
 				</div>
+        <div class="form-group">
+          <div class="dropzone"></div>
+        </div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-block">Guardar Publicacion</button>
 				</div>
@@ -80,11 +83,13 @@
 </div>
 @endsection
 @push('stylespicker')
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
  @endpush
  @push('scriptpicker')
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/ckeditor/ckeditor.js') }}"></script>
@@ -95,6 +100,11 @@
     });
     CKEDITOR.replace('editor');
     $('.select2').select2();
+
+    new Dropzone('.dropzone', {
+      url: '/';
+    })
+    Dropzone.autoDiscover = false;
 </script>
 @endpush
 
