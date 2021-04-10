@@ -58,7 +58,7 @@
               </div>
               <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
               		<label>Etiquetas</label>
-              	  <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Seleciona una Tags" style="width: 100%">
+              	  <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Select Tags" style="width: 100%;">
               	  		@foreach ($tags as $tag)
               	  			<option {{ collect(old('tags', $post->tags->pluck('id')))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->name }}</option>
               	  		@endforeach
@@ -83,21 +83,13 @@
 </div>
 @endsection
 @push('stylespicker')
-<<<<<<< HEAD
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.css">
-=======
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css">
->>>>>>> 629bd776aaf7e2444f4d5bedb140bbb0f691429b
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
  @endpush
  @push('scriptpicker')
-<<<<<<< HEAD
  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.js"></script>
-=======
- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
->>>>>>> 629bd776aaf7e2444f4d5bedb140bbb0f691429b
 <!-- bootstrap datepicker -->
 <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/ckeditor/ckeditor.js') }}"></script>
@@ -110,15 +102,10 @@
     $('.select2').select2();
 
     new Dropzone('.dropzone', {
-<<<<<<< HEAD
       url: "/admin/posts/{{ $post->id }}/photos",
       headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
       dictDefaultMessage: 'Arrastra las Fotos'
     });
-=======
-      url: '/';
-    })
->>>>>>> 629bd776aaf7e2444f4d5bedb140bbb0f691429b
     Dropzone.autoDiscover = false;
 </script>
 @endpush
