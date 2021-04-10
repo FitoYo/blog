@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 class PhotosController extends Controller
 {
     public function store(Post $post){
-    	return 'procesando imagen...';
+    	$this->validate(reques(), ['file' => 'requied|image|max:2048']);
+    	$file = request()->file('file');
     }
 }

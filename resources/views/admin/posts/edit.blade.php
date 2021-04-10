@@ -98,13 +98,21 @@
 	$('#datepicker').datepicker({
       autoclose: true
     });
-    CKEDITOR.replace('editor');
     $('.select2').select2();
+    CKEDITOR.replace('editor');
 
-    new Dropzone('.dropzone', {
-      url: "/admin/posts/{{ $post->id }}/photos",
+
+    var myDropzone = new Dropzone('.dropzone', {
+      url: "/admin/posts/{{ $post->url }}/photos",
+      acceptedFiles: 'image/*',
+      maxFilesize: 2,
+      maxFiles: 4,
       headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
       dictDefaultMessage: 'Arrastra las Fotos'
+    });
+    myDropzone.on('error', function(file, res){
+      var msg = res.file[0];
+      $('.dz-error-message:last > span').text(msg);
     });
     Dropzone.autoDiscover = false;
 </script>

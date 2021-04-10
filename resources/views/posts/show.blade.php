@@ -12,7 +12,7 @@
           <span class="c-gris">{{ $post->published_at->format('M d') }}</span>
         </div>
         <div class="post-category">
-          <span class="category">{{-- $post->category->name --}}</span>
+          <span class="category">{{ $post->category->name }}</span>
         </div>
       </header>
       <h1>{{ $post->title }} .</h1>
