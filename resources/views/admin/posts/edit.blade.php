@@ -71,8 +71,7 @@
 					{!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
 				</div>
         <div class="form-group">
-          <div class="dropzone"></div>
-        </div>
+               <div class="dropzone"></div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-block">Guardar Publicacion</button>
 				</div>
@@ -83,13 +82,13 @@
 </div>
 @endsection
 @push('stylespicker')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
  @endpush
  @push('scriptpicker')
- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.0.1/min/dropzone.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/ckeditor/ckeditor.js') }}"></script>
@@ -102,7 +101,7 @@
     CKEDITOR.replace('editor');
 
 
-    var myDropzone = new Dropzone('.dropzone', {
+  var myDropzone = new Dropzone('.dropzone', {
       url: "/admin/posts/{{ $post->url }}/photos",
       acceptedFiles: 'image/*',
       maxFilesize: 2,
